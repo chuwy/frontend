@@ -17,7 +17,7 @@ Once grunt-init is installed, place this template in your `~/.grunt-init/` direc
 
 .. code:: shell
 
-  git clone https://github.com/chuwy-frontend.git ~/.grunt-init/frontend
+  git clone https://github.com/chuwy/grunt-init-frontend.git ~/.grunt-init/frontend
 
 
 Usage
