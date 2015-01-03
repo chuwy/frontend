@@ -14,8 +14,8 @@ module.exports = function(grunt) {
                 files: ['scss/base.scss'],
                 tasks: ['compass:dev']
             },
-            html: {
-                files: ['index.html'],
+            other: {
+                files: ['index.html', 'Gruntfile.js'],
                 options: {
                     reload: true
                 }
@@ -51,7 +51,23 @@ module.exports = function(grunt) {
                 options: {
                     port: 9000,
                     hostname: '0.0.0.0',
-                    base: '.'
+                    base: '.',
+                    middleware: function(connect, options) {
+                        return [
+                            function(req, res, next) {
+                                res.setHeader('Access-Control-Allow-Origin', '*');
+                                res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                                res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+                                // don't just call next() return it
+                                return next();
+                            },
+
+                            // add other middlewares here
+                            connect.static(require('path').resolve('.'))
+
+                        ];
+                    }
                 }
             }
         } // }}}
